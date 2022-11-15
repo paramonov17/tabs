@@ -1,12 +1,12 @@
-const btnControl = document.querySelector('.tabs__control-btn');
+const btnControl = document.querySelector('.accordion__control-btn');
 
 btnControl.disabled = true;
 
-const tabsBtn = document.querySelectorAll('.tabs__nav-btn');
+const acordsBtn = document.querySelectorAll('.accordion__item-btn');
 
-const tabsBlock = document.querySelectorAll('.tabs__block');
+const acordsBlock = document.querySelectorAll('.accordion__item-text');
 
-tabsBtn.forEach(function(item) {
+acordsBtn.forEach(function(item) {
    
     item.addEventListener('click', function() {
 
@@ -16,21 +16,33 @@ tabsBtn.forEach(function(item) {
 
         let currentTab = document.querySelector(tabId);
 
-        tabsBlock.forEach(function(item){
-            item.classList.remove('active');
-        });
 
-        currentBtn.classList.add('active');
-        currentTab.classList.add('active');
+        if (! currentBtn.classList.contains('active') ) {
+            currentBtn.classList.add('active');
+            currentTab.classList.add('active');
 
-        let tabsBtnActive = document.querySelectorAll('.active');
+        } else {
+            acordsBlock.forEach(function(item){
+                currentBtn.classList.remove('active');
+            });
+            acordsBtn.forEach(function(item){
+                currentTab.classList.remove('active');
+            });
 
-        if (tabsBtn.length == tabsBtnActive.length-1){
-            btnControl.disabled = false;
+            btnControl.disabled = true;
+
         }
+       
+        
+        let acordsBtnActive = document.querySelectorAll('.accordion__item-btn.active');
+
+        if (acordsBtn.length == acordsBtnActive.length){
+        btnControl.disabled = false;
+        }
+
+        
     });
     
 });
 
-document.querySelector('.tabs__nav-btn').click();
 
