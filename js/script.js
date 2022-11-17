@@ -1,12 +1,12 @@
-const btnControl = document.querySelector('.accordion__control-btn');
+const btnControl = document.querySelector('.tabs__control-btn');
 
 btnControl.disabled = true;
 
-const acordsBtn = document.querySelectorAll('.accordion__item-btn');
+const tabsBtn = document.querySelectorAll('.tabs__nav-btn');
 
-const acordsBlock = document.querySelectorAll('.accordion__item-text');
+const tabsBlock = document.querySelectorAll('.tabs__block');
 
-acordsBtn.forEach(function(item) {
+tabsBtn.forEach(function(item) {
    
     item.addEventListener('click', function() {
 
@@ -16,33 +16,21 @@ acordsBtn.forEach(function(item) {
 
         let currentTab = document.querySelector(tabId);
 
+        tabsBlock.forEach(function(item){
+            item.classList.remove('active');
+        });
 
-        if (! currentBtn.classList.contains('active') ) {
-            currentBtn.classList.add('active');
-            currentTab.classList.add('active');
+        currentBtn.classList.add('active');
+        currentTab.classList.add('active');
 
-        } else {
-            acordsBlock.forEach(function(item){
-                currentBtn.classList.remove('active');
-            });
-            acordsBtn.forEach(function(item){
-                currentTab.classList.remove('active');
-            });
+        let tabsBtnActive = document.querySelectorAll('.active');
 
-            btnControl.disabled = true;
-
+        if (tabsBtn.length == tabsBtnActive.length-1){
+            btnControl.disabled = false;
         }
-       
-        
-        let acordsBtnActive = document.querySelectorAll('.accordion__item-btn.active');
-
-        if (acordsBtn.length == acordsBtnActive.length){
-        btnControl.disabled = false;
-        }
-
-        
     });
     
 });
 
+document.querySelector('.tabs__nav-btn').click();
 
